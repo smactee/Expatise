@@ -1,0 +1,166 @@
+/* app/page.module.css */
+
+/* Overall page */
+.page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(180deg, #e6f3ff, #f4f7ff);
+  padding: 24px 16px 40px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "Segoe UI", sans-serif;
+}
+
+.content {
+  width: 100%;
+  max-width: 420px;
+}
+
+/* Exam card */
+.examCard {
+  width: 100%;
+  aspect-ratio: 656 / 343;     /* match Figma card shape */
+  display: flex;
+  align-items: center;         /* text + car vertically centered */
+  padding: 24px 24px 26px;     /* adjust spacing to taste */
+  border-radius: 32px;         /* looks closer to your Figma rounding */
+  /* Base color + Figma-style linear gradient overlay */
+  background:
+    linear-gradient(
+      135deg,
+      rgba(43, 124, 175, 0.2) 0%,   /* #2B7CAF @ 20% */
+      rgba(255, 197, 66, 0.2) 100%  /* #FFC542 @ 20% */
+    ),
+    #eaf3ff;                         /* light base like your frame */
+
+  box-shadow: 0 18px 40px rgba(15, 33, 70, 0.26);
+  overflow: hidden;
+}
+
+
+/* Right side: blue car area */
+.carHero {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-left: 16px;
+  /* no background here – card background shows through */
+  background: transparent;
+}
+
+/* Car image */
+.carImage {
+  display: block;
+  max-width: 400%;
+  height: 400%;
+  /* Optional: nudge it a bit like in Figma */
+  transform: translateY(6px);
+}
+
+
+/* Left side text */
+.examText {
+  flex: 1.1;
+  display: flex;
+  flex-direction: column;
+}
+
+.examLabel {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: #222435;
+}
+
+.examTitle {
+  margin: 0.1rem 0 0.4rem;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #222435;
+}
+
+/* "My Test Day" link-style button */
+.myTestDayButton {
+  align-self: flex-start;
+  padding: 0;
+  margin: 0 0 0.9rem;
+  border: none;
+  background: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #2a6ddc;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Date input */
+.dateInput {
+  font-size: 0.9rem;
+  padding: 0.25rem 0.5rem;
+  margin-bottom: 0.8rem;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+/* Date + days row */
+.dateRow {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.timeBlock {
+  display: flex;
+  flex-direction: column;
+}
+
+.bigDate {
+  font-size: 1.9rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #222435;
+}
+
+.timeText {
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-top: 0.2rem;
+  color: #555b70;
+}
+
+.caption {
+  font-size: 0.75rem;
+  margin-top: 0.1rem;
+  color: #8a92aa;
+}
+
+.daysLeftContainer {
+  margin-top: 10px;
+}
+
+.daysLeftNumber {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #222435;
+}
+
+
+
+
+/* Mobile tweaks (small screens) */
+@media (max-width: 400px) {
+  .examCard {
+    padding: 16px 14px 18px;
+  }
+
+  .examTitle {
+    font-size: 1.6rem;
+  }
+
+  .bigDate {
+    font-size: 1.7rem;
+  }
+}
