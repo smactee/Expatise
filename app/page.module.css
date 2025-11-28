@@ -240,6 +240,25 @@
   color: #111827;        /* dark text like the Figma */
 }
 
+/* Small icon in the top-left of each card */
+.cardIcon {
+  position: absolute;
+  top: 40px;      /* tweak to match Figma */
+  left: 8px;
+  width: 70px;    /* adjust based on your exported size */
+  height: 70px;
+  border-radius: 12px;   /* if the icon background is rounded */
+  overflow: hidden;
+
+  /* Let drag-scroll work even when dragging over the icon */
+  pointer-events: none;
+}
+
+.cardIcon img {
+  width: 54px;
+  height: 54px;
+  object-fit: contain;
+}
 
 
 /* Mobile tweaks (small screens) */
