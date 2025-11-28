@@ -99,12 +99,37 @@ export default function Home() {
             <h2 className={styles.sectionTitle}>Test Mode</h2>
             <DragScrollRow className={styles.dragRow}>
               <article className={styles.featureCard}>
+                <Image
+                  src="/images/home/cards/realtest-bg.png"
+                  alt="Real Test Background"
+                  fill
+                  className={styles.cardBgImage}
+                />
+                <div className={styles.cardContent}>
+                  {/* later: small TEST icon in the top-left */}
                 <p className={styles.cardTitle}>Real Test</p>
+                </div>
               </article>
               <article className={styles.featureCard}>
+                <Image
+                  src="/images/home/cards/practice-bg.png"
+                  alt="Practice Background"
+                  fill
+                  className={styles.cardBgImage}
+                  draggable={false}
+                />
+                <div className={styles.cardContent}></div>
                 <p className={styles.cardTitle}>Practice</p>
               </article>
               <article className={styles.featureCard}>
+                <Image
+                  src="/images/home/cards/rapidfire-bg.png"
+                  alt="Rapid Fire Background"
+                  fill
+                  className={styles.cardBgImage}
+                  draggable={false}
+                />
+                <div className={styles.cardContent}></div>
                 <p className={styles.cardTitle}>Rapid Fire</p>
               </article>
             </DragScrollRow>
@@ -115,9 +140,25 @@ export default function Home() {
             <h2 className={styles.sectionTitle}>Overall</h2>
             <DragScrollRow className={styles.dragRow}>
               <article className={styles.featureCard}>
+                <Image
+                  src="/images/home/cards/allquestions-bg.png"
+                  alt="All Questions Background"
+                  fill
+                  className={styles.cardBgImage}
+                  draggable={false}
+                />
+                <div className={styles.cardContent}></div>
                 <p className={styles.cardTitle}>All Questions</p>
               </article>
               <article className={styles.featureCard}>
+                <Image
+                  src="/images/home/cards/globalmistakes-bg.png"
+                  alt="Global Common Mistakes Background"
+                  fill
+                  className={styles.cardBgImage}
+                  draggable={false}
+                />
+                <div className={styles.cardContent}></div>
                 <p className={styles.cardTitle}>Global Common Mistakes</p>
               </article>
             </DragScrollRow>
@@ -129,9 +170,25 @@ export default function Home() {
             <h2 className={styles.sectionTitle}>My</h2>
             <DragScrollRow className={styles.dragRow}>
               <article className={styles.featureCard}>
-                <p className={styles.cardTitle}>Bookmarks</p>
+                <Image
+                  src="/images/home/cards/bookmark-bg.png"
+                  alt="Bookmarks Background"
+                  fill
+                  className={styles.cardBgImage}
+                  draggable={false}
+                />
+                <div className={styles.cardContent}></div>
+                <p className={styles.cardTitle}>Bookmark</p>
               </article>
               <article className={styles.featureCard}>
+                <Image
+                  src="/images/home/cards/mymistakes-bg.png"
+                  alt="My Mistakes Background"
+                  fill
+                  className={styles.cardBgImage}
+                  draggable={false}
+                />
+                <div className={styles.cardContent}></div>
                 <p className={styles.cardTitle}>My Mistakes</p>
               </article>
             </DragScrollRow>
