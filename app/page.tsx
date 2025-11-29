@@ -88,6 +88,7 @@ export default function Home() {
               height={437}
               priority
               className={styles.carImage}
+              draggable={false}
             />
           </div>
         </section>
@@ -97,6 +98,7 @@ export default function Home() {
           {/* Test Mode */}
           <div className={styles.sectionGroup}>
             <h2 className={styles.sectionTitle}>Test Mode</h2>
+            
             {/* Real Test */}
             <DragScrollRow className={styles.dragRow}>
               <article className={styles.featureCard}>
@@ -105,7 +107,9 @@ export default function Home() {
                   alt="Real Test Background"
                   fill
                   className={styles.cardBgImage}
+                  draggable={false}
                 />
+                <div className={styles.cardTopRow}>
                 <div className={styles.cardIcon}>
                   <Image
                     src="/images/home/icons/realtest-icon.png"
@@ -114,11 +118,13 @@ export default function Home() {
                     draggable={false}
                   />
                 </div>
+                <p className={styles.cardTopText}>Practice like it's the real thing!</p>
+                </div>
                 <div className={styles.cardContent}>
-                  {/* later: small TEST icon in the top-left */}
                 <p className={styles.cardTitle}>Real Test</p>
                 </div>
               </article>
+
               {/* Practice */}
               <article className={styles.featureCard}>
                 <Image
@@ -128,9 +134,22 @@ export default function Home() {
                   className={styles.cardBgImage}
                   draggable={false}
                 />
-                <div className={styles.cardContent}></div>
+                <div className={styles.cardTopRow}>
+                <div className={styles.cardIcon}>
+                <Image 
+                  src="/images/home/icons/practice-icon.png"
+                  alt="Practice Icon"
+                  fill
+                  draggable={false}
+                />
+                </div>
+                <p className={styles.cardTopText}>Take as much time as you need. No time limit!</p>
+                </div>
+                <div className={styles.cardContent}>
                 <p className={styles.cardTitle}>Practice</p>
+                </div>
               </article>
+
               {/* Rapid Fire */}
               <article className={styles.featureCard}>
                 <Image
@@ -140,8 +159,20 @@ export default function Home() {
                   className={styles.cardBgImage}
                   draggable={false}
                 />
-                <div className={styles.cardContent}></div>
+                <div className={styles.cardTopRow}>
+                <div className={styles.cardIcon}>
+                <Image 
+                  src="/images/home/icons/rapidfire-icon.png"
+                  alt="Rapid Fire Icon"
+                  fill
+                  draggable={false}
+                />
+                </div>
+                <p className={styles.cardTopText}>Ready for a rapid challenge?</p>
+                </div>
+                <div className={styles.cardContent}>
                 <p className={styles.cardTitle}>Rapid Fire</p>
+                </div>
               </article>
             </DragScrollRow>
           </div>
@@ -159,9 +190,23 @@ export default function Home() {
                   className={styles.cardBgImage}
                   draggable={false}
                 />
-                <div className={styles.cardContent}></div>
+                <div className={styles.cardTopRow}>
+                <div className={styles.cardIcon}>
+                <Image 
+                  src="/images/home/icons/allquestions-icon.png"
+                  alt="All Questions Icon"
+                  fill
+                  draggable={false}
+                />
+                </div>
+                <p className={styles.cardTopText}>Browse through all questions!</p>
+                </div>
+                <div className={styles.cardContent}>
                 <p className={styles.cardTitle}>All Questions</p>
+                </div>
               </article>
+              
+
               {/* Global Common Mistakes */}
               <article className={styles.featureCard}>
                 <Image
@@ -171,8 +216,20 @@ export default function Home() {
                   className={styles.cardBgImage}
                   draggable={false}
                 />
-                <div className={styles.cardContent}></div>
+                <div className={styles.cardTopRow}>
+                <div className={styles.cardIcon}>
+                <Image 
+                  src="/images/home/icons/globalmistakes-icon.png"
+                  alt="Global Common Mistakes Icon"
+                  fill
+                  draggable={false}
+                />
+                </div>
+                <p className={styles.cardTopText}>What questions are others struggling with?</p>
+                </div>
+                <div className={styles.cardContent}>
                 <p className={styles.cardTitle}>Global Common Mistakes</p>
+                </div>
               </article>
             </DragScrollRow>
           </div>
@@ -191,8 +248,20 @@ export default function Home() {
                   className={styles.cardBgImage}
                   draggable={false}
                 />
-                <div className={styles.cardContent}></div>
+                <div className={styles.cardTopRow}>
+                <div className={styles.cardIcon}>
+                <Image 
+                  src="/images/home/icons/bookmark-icon.png"
+                  alt="Bookmark Icon"
+                  fill
+                  draggable={false}
+                />
+                </div>
+                <p className={styles.cardTopText}>Save questions for later!</p>
+                </div>
+                <div className={styles.cardContent}>
                 <p className={styles.cardTitle}>Bookmark</p>
+                </div>
               </article>
               {/* My Mistakes */}
               <article className={styles.featureCard}>
@@ -203,8 +272,20 @@ export default function Home() {
                   className={styles.cardBgImage}
                   draggable={false}
                 />
-                <div className={styles.cardContent}></div>
+                <div className={styles.cardTopRow}>
+                <div className={styles.cardIcon}>
+                <Image 
+                  src="/images/home/icons/mymistakes-icon.png"
+                  alt="My Mistakes Icon"
+                  fill
+                  draggable={false}
+                />
+                </div>
+                <p className={styles.cardTopText}>Review your past mistakes!</p>
+                </div>
+                <div className={styles.cardContent}>
                 <p className={styles.cardTitle}>My Mistakes</p>
+                </div>
               </article>
             </DragScrollRow>
           </div>

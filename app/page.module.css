@@ -214,51 +214,67 @@
   scroll-snap-align: start;    /* 🔹 snaps card nicely to left edge */
 }
 
+/* Card background image */
 .cardBgImage {
   object-fit: cover;
   z-index: 0;
 }
 
-.cardContent {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 12px 10px;
-}
-
-
-
-/* Card title text like "Real Test" */
-.cardTitle {
-  position: relative;    /* so it appears above the absolute image */
-  z-index: 1;
-  margin: 0;
-  font-size: 16px;
-  font-weight: 700;
-  color: #111827;        /* dark text like the Figma */
-}
-
-/* Small icon in the top-left of each card */
-.cardIcon {
+/* === TOP ROW (icon + small text) === */
+.cardTopRow {
   position: absolute;
-  top: 40px;      /* tweak to match Figma */
-  left: 8px;
-  width: 70px;    /* adjust based on your exported size */
-  height: 70px;
-  border-radius: 12px;   /* if the icon background is rounded */
-  overflow: hidden;
+  top: 40px;        /* distance from top of card (match Figma) */
+  left: 22px;       /* 22px from left, as measured in Figma */
+  display: flex;
+  align-items: center;
+  gap: 8px;         /* space between icon and text */
+  z-index: 1;
+}
 
-  /* Let drag-scroll work even when dragging over the icon */
-  pointer-events: none;
+/* Icon box */
+.cardIcon {
+  position: relative;
+  width: 54px;      /* your exported icon size */
+  height: 54px;
+  border-radius: 12px;
+  overflow: hidden;
+  pointer-events: none;  /* let drag-scroll work over icon */
 }
 
 .cardIcon img {
-  width: 54px;
-  height: 54px;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
 }
+
+/* Text next to the icon */
+.cardTopText {
+  margin: 0;
+  font-size: 12px;      /* bump to 13–14 if you want */
+  font-weight: 600;
+  line-height: 1.3;
+  color: #0f172a;
+  max-width: 150px;
+}
+
+/* === BOTTOM TITLE === */
+.cardContent {
+  position: absolute;
+  left: 22px;      /* same left padding as top row */
+  top: 110px;    /* distance from bottom of card – tweak to match Figma */
+  z-index: 1;
+}
+
+
+.cardTitle {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  color: #111827;
+}
+
+
+
 
 
 /* Mobile tweaks (small screens) */
