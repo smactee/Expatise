@@ -93,7 +93,6 @@
   font-size: 23px;
   font-weight: 600;
   color: #222435;
-  text-decoration: underline;
 }
 
 /* Date input */
@@ -112,7 +111,6 @@
   display: flex;
   align-items: flex-end;
   gap: 8px;
-  margin-top: 12px;
   position: relative; /* so the hidden input can sit here */
 }
 
@@ -340,5 +338,99 @@
 
 .dragRow:active {
   cursor: grabbing;
+}
+
+/* === Bottom Nav Bar === */
+
+.bottomNavWrapper {
+  position: fixed;          /* float on top of content */
+  left: 50%;
+  bottom: 24px;             /* distance from bottom of screen */
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 560px;         /* same as .content max-width */
+  display: flex;
+  justify-content: center;
+  pointer-events: none;     /* only nav itself should catch clicks */
+  z-index: 40;
+}
+
+.bottomNav {
+  width: 390px;             /* Figma: 352 x 66 */
+  height: 66px;
+  padding: 9px;             /* Figma padding */
+  border-radius: 25px;      /* Figma corner radius */
+  background: rgba(30, 30, 31, 0.85); /* #1E1E1F at 85% */
+  border: 1px solid rgba(0, 0, 0, 0.9);
+  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.55);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  pointer-events: auto;     /* re-enable clicks here */
+}
+
+/* Each nav item (icon + optional text) */
+.navItem {
+  position: relative;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 28px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: none;
+  background: transparent;
+  color: #9ca3af;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Active item gets the blue pill background */
+
+
+/* Icon size (for now we use emoji; later swap for <Image>) */
+.navIcon {
+  font-size: 20px;
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Label text */
+.navLabel {
+  white-space: nowrap;
+  /* (optional) default color for inactive items */
+  color: #9ca3af;
+}
+
+/* Make text & icon blue when active */
+.navItemActive .navLabel {
+  color: #37B2FF;
+}
+
+/* Active pill background behind Home icon + text */
+.navPill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;              /* 28px gap between icon and text */
+  width: 130px;
+  height: 48px;
+  border-radius: 25px;    /* Figma corner radius */
+
+  /* Figma: Linear 37B2FF → transparent */
+  background: linear-gradient(
+    90deg,
+    #37B2FF 0%,
+    rgba(55, 178, 255, 0) 100%
+  );
 }
 

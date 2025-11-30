@@ -42,54 +42,84 @@ export default function DragScrollRow({
   };
 
   const startMomentum = () => {
-    const el = rowRef.current;
-    if (!el) return;
+  const el = rowRef.current;
+  if (!el) return;
 
-    const friction = 0.99;   // 0.9 stops faster, 0.98 glides longer
-    const minVelocity = 0.05; // stop when slower than this
+  const friction = 0.985;    // glides a bit longer
+  const minVelocity = 0.05;  // when to stop throwing
+  const overshoot = 160;     // ⬅ big overshoot distance in px
 
-   const step = () => {
-  const node = rowRef.current;
-  if (!node) return;
+  const step = (time?: number) => {
+    const node = rowRef.current;
+    if (!node) return;
 
-  // apply velocity
-  node.scrollLeft -= velocityRef.current;
+    // apply velocity (the usual momentum)
+    node.scrollLeft -= velocityRef.current;
 
-  const maxScroll = node.scrollWidth - node.clientWidth;
-  const overshoot = 60; // how far (px) you can 'stretch' past the edge
+    const maxScroll = node.scrollWidth - node.clientWidth;
 
-  // LEFT EDGE
-  if (node.scrollLeft < -overshoot) {
-    // hard clamp + big bounce
-    node.scrollLeft = 0;
-    velocityRef.current = -velocityRef.current * 0.9; // very strong bounce
-  } else if (node.scrollLeft < 0) {
-    // soft rubber-band zone
-    velocityRef.current *= 0.7;
-  }
+    // --- rubber-band damping when outside [0, maxScroll] ---
+    if (node.scrollLeft < 0) {
+      const past = -node.scrollLeft;                    // how far past left edge
+      const ratio = Math.min(1, past / overshoot);      // 0 → 1
+      const edgeFriction = 1 - 0.7 * ratio;             // 1 → 0.3
+      velocityRef.current *= edgeFriction;              // slows more as you stretch
+    } else if (node.scrollLeft > maxScroll) {
+      const past = node.scrollLeft - maxScroll;         // how far past right edge
+      const ratio = Math.min(1, past / overshoot);
+      const edgeFriction = 1 - 0.7 * ratio;
+      velocityRef.current *= edgeFriction;
+    }
 
-  // RIGHT EDGE
-  if (node.scrollLeft > maxScroll + overshoot) {
-    node.scrollLeft = maxScroll;
-    velocityRef.current = -velocityRef.current * 0.9;
-  } else if (node.scrollLeft > maxScroll) {
-    velocityRef.current *= 0.7;
-  }
+    // global friction
+    velocityRef.current *= friction;
 
-  // friction: slow down over time
-  velocityRef.current *= friction;
+    if (Math.abs(velocityRef.current) > minVelocity) {
+      frameIdRef.current = requestAnimationFrame(step);
+    } else {
+      // stop throwing and do a smooth snap-back if we're overshooting
+      const outOfBounds =
+        node.scrollLeft < 0 || node.scrollLeft > maxScroll;
 
-  if (Math.abs(velocityRef.current) > minVelocity) {
-    frameIdRef.current = requestAnimationFrame(step);
-  } else {
-    velocityRef.current = 0;
-    stopAnimation();
-  }
+      if (!outOfBounds) {
+        velocityRef.current = 0;
+        stopAnimation();
+        return;
+      }
+
+      const start = node.scrollLeft;
+      const end = Math.min(maxScroll, Math.max(0, start)); // clamp to [0, maxScroll]
+      const duration = 400; // ms
+
+      const startTime = performance.now();
+
+      const animateBack = (t: number) => {
+        const node2 = rowRef.current;
+        if (!node2) return;
+
+        const elapsed = t - startTime;
+        const progress = Math.min(1, elapsed / duration);
+
+        // easeOutCubic for smooth snap
+        const eased = 1 - Math.pow(1 - progress, 3);
+
+        node2.scrollLeft = start + (end - start) * eased;
+
+        if (progress < 1) {
+          frameIdRef.current = requestAnimationFrame(animateBack);
+        } else {
+          velocityRef.current = 0;
+          stopAnimation();
+        }
+      };
+
+      frameIdRef.current = requestAnimationFrame(animateBack);
+    }
+  };
+
+  frameIdRef.current = requestAnimationFrame(step);
 };
 
-
-    frameIdRef.current = requestAnimationFrame(step);
-  };
 
   const handleMouseUpOrLeave = () => {
     if (!isDraggingRef.current) return;
