@@ -191,22 +191,36 @@
 
 /* Toggle (static ON state for now) */
 
+/* Light / Dark toggle */
+
 .toggle {
-  width: 50px;
-  height: 28px;
+  width: 44px;
+  height: 24px;
   border-radius: 999px;
-  background: #1f2933;
   padding: 3px;
   display: flex;
   align-items: center;
-  justify-content: flex-end; /* knob on the right */
+  justify-content: flex-start;
+  background: rgba(148, 163, 184, 0.4);
+  transition: background 0.2s ease;
+}
+
+.toggleOn {
+  background: var(--accent, #6366f1);
 }
 
 .toggleKnob {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   border-radius: 999px;
   background: #ffffff;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.6);
+  transform: translateX(0);
+  transition: transform 0.2s ease;
+}
+
+.toggleKnobOn {
+  transform: translateX(20px);
 }
 
 /* ===== Logout button ===== */

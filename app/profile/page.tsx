@@ -5,11 +5,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styles from './profile.module.css';
 import BottomNav from '../../components/BottomNav';
+import { useTheme } from '../../components/ThemeProvider';
 
 export default function ProfilePage() {
     // ---- avatar upload state + handlers ----
   const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const { theme, toggleTheme } = useTheme();
 
   const handleAvatarClick = () => {
     fileInputRef.current?.click();
@@ -98,22 +100,38 @@ export default function ProfilePage() {
   </div>
         {/* Settings list */}
       <div className={styles.settingsList}>
-        <button className={styles.settingsRow}>
-          <div className={styles.settingsLeft}>
-            <span className={styles.settingsIcon}>
-              <Image 
-                src="/images/profile/lightdarkmode-icon.png"
-                alt="Light / Dark Mode Icon"
-                width={24}
-                height={24}
-              />
-            </span>
-            <span className={styles.settingsLabel}>Light / Dark Mode</span>
-          </div>
-          <div className={styles.toggle}>
-            <div className={styles.toggleKnob} />
-          </div>
-        </button>
+                    {/* Light / Dark Mode */}
+            <button
+              type="button"
+              className={styles.settingsRow}
+              onClick={toggleTheme}
+            >
+              <div className={styles.settingsLeft}>
+                <span className={styles.settingsIcon}>
+                  <Image
+                    src="/images/profile/lightdarkmode-icon.png"
+                    alt="Light / Dark Mode Icon"
+                    width={24}
+                    height={24}
+                  />
+                </span>
+                <span className={styles.settingsLabel}>
+                  Light / Dark Mode
+                </span>
+              </div>
+              <div
+                className={`${styles.toggle} ${
+                  theme === 'dark' ? styles.toggleOn : ''
+                }`}
+              >
+                <div
+                  className={`${styles.toggleKnob} ${
+                    theme === 'dark' ? styles.toggleKnobOn : ''
+                  }`}
+                />
+              </div>
+            </button>
+
 
         <button className={styles.settingsRow}>
           <div className={styles.settingsLeft}>

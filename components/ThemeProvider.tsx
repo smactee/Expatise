@@ -5,6 +5,7 @@ import React, {
     useContext,
     useEffect,
     useState,
+    type ReactNode,
 } from 'react';
 
 type Theme = 'light' | 'dark';
@@ -15,11 +16,17 @@ interface ThemeContextValue {
     setTheme: (theme: Theme) => void;
 }
 
+interface ThemeProviderProps {
+    children: ReactNode;
+}
+
 const ThemeContext = createContext<ThemeContextValue | undefined>(
     undefined
 );
 
-export function ThemeProvider ({ children }): {children: React.ReactNode} {
+const THEME_STORAGE_KEY = 'THEME_STORAGE_KEY';
+
+export function ThemeProvider ({ children }: ThemeProviderProps) {
     const [theme, setThemeState] = useState<Theme>('dark');
 
     //Hydrate theme from localStorage / system preference
